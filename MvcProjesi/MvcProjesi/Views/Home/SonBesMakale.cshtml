@@ -1,26 +1,54 @@
-﻿<!--
-    Model verisi, tek bir veriye işaret ediyordu. Ancak biz, Controller'den veriyi
-    bir liste halinde gönderdiğimiz için aşağıdaki satırı güncelledik.
--->
-@model List<MvcProjesi.Data.Makale>
+﻿<html>
+<head>
+    <link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/StyleSheet1.css">
+</head>
+<body style="background-color:darkkhaki;">
+    <!--
+        Model verisi, tek bir veriye işaret ediyordu. Ancak biz, Controller'den veriyi
+        bir liste halinde gönderdiğimiz için aşağıdaki satırı güncelledik.
+    -->
+    @model List<MvcProjesi.Data.Makale>
+
+
 
 @{
 //En dışa bir çerçeve attık. İçeriği ortaladık ve 25'er piksel boşluk verdik.
-    <div style="border:1px solid black;padding:25px;text-align:center;">
-        <h2>Son Beş Makale</h2>
-        <!--
-        //Burada Model dediğimiz zaman, Controllerden gelen veriye direkt ulaşmaktayız.
-        //Biz burada liste halinde gelen Model'imizde döngü kurarak, içindeki verileri
-        //html olarak basacağız.
-            -->
+    <div class="page-header" style="text-align:center; margin-right:20px; height:180px;"  >
+        
+        <h1 >
+            <a href="/">
+                Son Beş Makale</a></h1>
+                <!--
+                //Burada Model dediğimiz zaman, Controllerden gelen veriye direkt ulaşmaktayız.
+                //Biz burada liste halinde gelen Model'imizde döngü kurarak, içindeki verileri
+                //html olarak basacağız.
+                    -->
+    </div>
+    <div id="page-header" style="text-align:center; margin-right:20px;">
         @foreach (var item in Model)
         {
             //Burada her makalenin etrafına çerçeve attık
-            <div style="border:1px solid black">
-                <h3>@item.Baslik</h3>
-                <p>@item.Icerik</p>
-                <strong>Tarih : @item.Tarih </strong>
+
+            
+                    <div  style="border-bottom:groove;">
+                        <h1>
+                            <a href="">
+                                @item.Baslik
+                            </a>
+                        </h1>
+                        <p style="color:black;">@item.Icerik</p>
+                        <div class="date">
+                            <strong>Tarih : @item.Tarih </strong>
+                     
+                </div>
             </div>
         }
     </div>
-}
+
+}   
+
+</body>
+</html>

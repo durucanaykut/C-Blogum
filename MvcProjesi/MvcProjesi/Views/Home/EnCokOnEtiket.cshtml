@@ -1,0 +1,32 @@
+﻿<html>
+<head>
+    <link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/StyleSheet1.css">
+</head>
+<body>
+    <!--Modelimiz liste olarak geldiği için List<> içerisine aldık-->
+    @model List<MvcProjesi.Data.Etiket>
+    <div class="page-header">
+        <h1>
+            <a href="/">
+                En Çok Kullanılan On Etiket
+            </a>
+        </h1>
+        @{
+            //Bu sefer de while döngüsünü kullandık.
+            int sayi = 0;
+            while (sayi < Model.Count())
+            {
+                //Burada her etiketin etrafına çerçeve attık
+                <ul id="page-header" style="border:1px solid yellow">
+                    <li style="color:aquamarine;">@Model[sayi].Icerik</li>
+                </ul>
+                sayi++;
+            }
+        }
+    </div>
+
+</body>
+</html>

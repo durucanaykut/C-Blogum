@@ -30,5 +30,29 @@ namespace MvcProjesi.Controllers
             //Ayrıca makaleListe nesnesini de View'de kullanacağımız şekilde model olarak aktarıyoruz.
             return PartialView(makaleListe);
         }
+
+        //Son 5 yorumun ana sayfaya yükleneceği Action
+        public ActionResult SonBesYorum()
+        {
+            MvcProjesiContext db = new MvcProjesiContext();
+
+            //Tarih sırasına göre son makaleleri OrderByDescending ile çekip Take ile de 5 tane almasını istiyoruz.
+            List<Yorum> yorumListe = db.Yorums.OrderByDescending(i => i.Tarih).Take(5).ToList();
+
+            //Ayrıca yorumListe nesnesini de View'de kullanacağımız şekilde model olarak aktarıyoruz.
+            return PartialView(yorumListe);
+        }
+        //En çok kullanılan 5 etiketin ana sayfaya yükleneceği Action
+        public ActionResult EnCokOnEtiket()
+        {
+            MvcProjesiContext db = new MvcProjesiContext();
+
+            //Etiketleri sorgularken, kaç adet makaleye bağlandığını bulup, ona göre yüksekten,
+            //aşağı doğru sıralanmasını sağlıyoruz. Gelen sonuçtan 10 adet alıp, listeye ekliyoruz.
+            List<Etiket> etiketListe = (from i in db.Etikets orderby i.Makales.Count() descending select i).Take(10).ToList();
+
+            //Ayrıca etiketListe nesnesini de View'de kullanacağımız şekilde model olarak aktarıyoruz.
+            return PartialView(etiketListe);
+        }
     }
 }

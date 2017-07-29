@@ -1,0 +1,52 @@
+﻿<html>
+<head>
+    <link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/StyleSheet1.css">
+</head>
+<body>
+    <!--Modelimiz liste olarak geldiği için List<> içerisine aldık-->
+    @model List<MvcProjesi.Data.Yorum>
+    <div class="page-header" style="height:180px;">
+        <h1>
+            <a href="/">
+                Son Beş Yorum
+            </a>
+        </h1>
+    </div>
+    <div id="page-header" style="text-align:center;">
+        @{
+            //Bu sefer de for döngüsünü kullandık.
+            for (int i = 0; i < Model.Count() - 1; i++)
+            {
+                //Burada her yorumun etrafına çerçeve attık
+               
+                        <div  style="border-bottom:groove;">
+                            <h1>
+                                <a href="">
+                                    <!--Üye bilgilerini alırken Linq yardımıyla, direkt, yorumu yazan üyenin bilgilerine
+                                    @@Model[i].Uye. şeklinde ulaşabildik.
+                                    -->
+                                    Üye Bilgileri
+                                </a>
+                            </h1>
+                            <p style="color:black;"> Adı : @Model[i].Uye.Ad<br />
+                            Soyadı : @Model[i].Uye.Soyad<br /></p>
+                            <h3 style="color:aquamarine;">Makale Bilgileri</h3>
+                            <!--Üye bilgilerini alırken Linq yardımıyla, direkt, yorumun ait olduğu
+                                      makelenin bilgilerine @@Model[i].Makale. şeklinde ulaşabildik.
+                            -->
+                           <a style="color:wheat;">Başlık : </a><a style="color:black;">@Model[i].Makale.Baslik</a>
+                            <h3 style="color:aquamarine;">Yorumun İçeriği</h3>
+                            <p style="color:black;">@Model[i].Icerik</p>
+                           <a style="color:wheat; font-weight:bold;">Tarih : @Model[i].Tarih</a>
+                        </div>
+            }
+
+        }
+    </div>
+
+
+    </body>
+</html>
