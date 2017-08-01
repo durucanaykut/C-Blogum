@@ -21,7 +21,7 @@
             {
                 //Burada her etiketin etrafına çerçeve attık
                 <ul id="page-header" style="border:1px solid yellow">
-                    <li style="color:aquamarine;">@Model[sayi].Icerik</li>
+                    <li style="color:aquamarine;">@Html.ActionLink(Model[sayi].Icerik, "EtiketinMakaleleri", new { etiketId = Model[sayi].EtiketId })</li>
                 </ul>
                 sayi++;
             }

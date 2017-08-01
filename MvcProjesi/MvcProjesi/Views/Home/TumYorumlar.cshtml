@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MvcProjesi.Data.Yorum>
+
+@{
+    ViewBag.Title = "TumYorumlar";
+}
+<html>
+<head>
+    <link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/StyleSheet1.css">
+</head>
+<body style="background-color:darkkhaki;">
+    <div class="page-header">
+        <h1>
+            <a href="/">
+                TumYorumlar
+            </a>
+        </h1>
+    </div>
+
+    @{
+        //Veri kaynağımız liste olduğu için döngümüzü kuruyoruz.
+        foreach (var item in Model)
+        {
+            <div id="page-header" style="width:100%;margin-top:25px;box-shadow:0 0 5px gray;padding:25px; color:antiquewhite;">
+                <h4>@Html.Display("Yorumun İçeriği")</h4>
+                @Html.DisplayFor(i => item.Icerik)
+                <hr />
+                @Html.Label("Yorumun Yazıldığı Makalenin Başlığı :")&nbsp;&nbsp;@Html.DisplayFor(i => item.Makale.Baslik)
+                <hr />
+
+                @Html.Label("Yorumun Yazan Kişinin Adı ve Soyadı : ")&nbsp;&nbsp;@{string adSoyad = item.Uye.Ad + " " + item.Uye.Soyad;}@adSoyad
+            </div>
+                    }
+    }
+</body>
+
+</html>

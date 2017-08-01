@@ -54,5 +54,48 @@ namespace MvcProjesi.Controllers
             //Ayrıca etiketListe nesnesini de View'de kullanacağımız şekilde model olarak aktarıyoruz.
             return PartialView(etiketListe);
         }
+
+        public ActionResult TumMakaleler()
+        {
+            MvcProjesiContext db = new MvcProjesiContext();
+
+            //Tüm makalelerimizi, tarih sırasına göre, büyükten küçüğe olmak üzere çekiyoruz.
+            List<Makale> makaleListe = (from i in db.Makales orderby i.Tarih descending select i).ToList();
+            return View(makaleListe);
+        }
+
+        public ActionResult TumYorumlar()
+        {
+            MvcProjesiContext db = new MvcProjesiContext();
+            List<Yorum> yorumListe = (from i in db.Yorums orderby i.Tarih descending select i).ToList();
+            return View(yorumListe);
+        }
+
+        public ActionResult EtiketinMakaleleri(int etiketId)
+        {
+            MvcProjesiContext db = new MvcProjesiContext();
+            var geciciListe = (from i in db.Etikets where i.EtiketId == etiketId select i.Makales).ToList();
+
+            //Burada veri içiçe liste halinde geldiği için, içerideki listeyi [0] indexi ile alıp gönderiyoruz.
+            return View(geciciListe[0]);
+        }
+
+        public ActionResult MakaleDetay(int makaleId)
+        {
+            MvcProjesiContext db = new MvcProjesiContext();
+
+            //Burada verilen id numarasına göre seçili makaleyi alıyoruz.
+            Makale makale = (from i in db.Makales where i.MakaleId == makaleId select i).SingleOrDefault();
+            return View(makale);
+        }
+
+        public ActionResult YorumMakalesi(int yorumId)
+        {
+            MvcProjesiContext db = new MvcProjesiContext();
+
+            //Burada verilen yorumId numarasına göre ait olduğu makaleyi alıyoruz.
+            Makale makale = (from i in db.Yorums where i.YorumId == yorumId select i.Makale).SingleOrDefault();
+            return View(makale);
+        }
     }
 }

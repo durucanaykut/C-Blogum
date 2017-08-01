@@ -105,6 +105,6 @@ C:\Users\aykut\Documents\GitHub\C-Blogum\MvcProjesi\MvcProjesi\bin\Microsoft.Owi
 C:\Users\aykut\Documents\GitHub\C-Blogum\MvcProjesi\MvcProjesi\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\aykut\Documents\GitHub\C-Blogum\MvcProjesi\MvcProjesi\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\aykut\Documents\GitHub\C-Blogum\MvcProjesi\MvcProjesi\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\aykut\Documents\GitHub\C-Blogum\MvcProjesi\MvcProjesi\obj\Debug\MvcProjesi.csprojResolveAssemblyReference.cache
 C:\Users\aykut\Documents\GitHub\C-Blogum\MvcProjesi\MvcProjesi\obj\Debug\MvcProjesi.dll
 C:\Users\aykut\Documents\GitHub\C-Blogum\MvcProjesi\MvcProjesi\obj\Debug\MvcProjesi.pdb
+C:\Users\aykut\Documents\GitHub\C-Blogum\MvcProjesi\MvcProjesi\obj\Debug\MvcProjesi.csprojResolveAssemblyReference.cache

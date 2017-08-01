@@ -1,0 +1,47 @@
+﻿@model IEnumerable<MvcProjesi.Data.Makale>
+<html>
+<head>
+    <link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/StyleSheet1.css">
+</head>
+<body style="background-color:darkkhaki;">
+    <div class="page-header">
+        <h1>
+            <a href="/">
+                Makaleler
+            </a>
+        </h1>
+    </div>
+    @{
+        //Veri kaynağımız liste olduğu için döngümüzü kuruyoruz.
+        foreach (var item in Model)
+        {
+            <div id="page-header" style="width:100%;margin-top:25px;box-shadow:0 0 5px gray;padding:25px; color:antiquewhite;">
+                <!--Başlığı, büyük ve renkli görünsün diye, h3 tagı içerisine aldık-->
+                <h3 style="font-weight:bold;color:red">
+                    @Html.DisplayFor(i => item.Baslik)
+                </h3>
+
+                <!--Başlıkla içerik arasına, dikey çizgi ekliyoruz.-->
+                <hr />
+
+                @Html.DisplayFor(i => item.Icerik)
+                <hr />
+                <!--Tarih başlığını, tarih içeriğine bağlamak için Label kullandık.-->
+                @Html.Label("Tarih : ")
+
+                @Html.DisplayFor(i => item.Tarih)
+                <hr />
+                <h4>Makaleyi Yazan</h4>
+
+                <!--Burada bir değişkende, ad ile soyadı birleştirip ekrana bastık.-->
+                @{string adSoyad = item.Uye.Ad + " " + item.Uye.Soyad;}
+                @Html.Label("Adı ve Soyadı : ")&nbsp;&nbsp;@adSoyad
+            </div>
+                    }
+    }
+</body>
+
+</html>

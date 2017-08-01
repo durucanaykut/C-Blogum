@@ -48,6 +48,11 @@ namespace MvcProjesi.Data
         [DataType(DataType.DateTime, ErrorMessage = "Lütfen üye olma tarihini, doğru bir şekilde giriniz.")]
         public DateTime UyeOlmaTarih { get; set; }
 
+        //Baştan eklemeyi unuttuğumuz şifre kısmını ekledik.
+        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Lütfen şifrenizi giriniz.")]
+        public string Sifre { get; set; }
+
         //Bir üyenin, birden çok yorumu olabileceği için Yorumları bir liste içerisine alıyoruz. 
         //Property adının sonuna s takısı koymamızın sebebi, veri tipinin çoğul olduğunun daha kolay anlaşılabilmesi 
         //içindir. Entity varsayılan olarak, liste verilerin sonuna s takısı koymaktadır.
@@ -58,5 +63,7 @@ namespace MvcProjesi.Data
 
         //Bir üyenin eklediği, birden çok makale olabilir.
         public virtual List<Makale> Makales { get; set; }
+
+
     }
 }

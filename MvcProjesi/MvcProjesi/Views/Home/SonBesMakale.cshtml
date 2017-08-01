@@ -36,7 +36,7 @@
                     <div  style="border-bottom:groove;">
                         <h1>
                             <a href="">
-                                @item.Baslik
+                                @Html.ActionLink(item.Baslik, "MakaleDetay", new { makaleId = item.MakaleId })
                             </a>
                         </h1>
                         <p style="color:black;">@item.Icerik</p>

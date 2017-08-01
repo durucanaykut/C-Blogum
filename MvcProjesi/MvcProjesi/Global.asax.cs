@@ -35,7 +35,7 @@ namespace MvcProjesi
                 if (makaleAdet < 5 || yorumAdet < 5 || uyeAdet < 1 || etiketAdet < 10)
                 {
                     //Bir tane örnek üye oluşturuyoruz.
-                    Uye uye = new Uye() { Ad = "Abdurrahman", Soyad = "Güngör", EPosta = "abdurrahmangungor@deneme.com", ResimYol = "", UyeOlmaTarih = DateTime.Now, WebSite = "" };
+                    Uye uye = new Uye() { Ad = "Abdurrahman", Soyad = "Güngör", EPosta = "abdurrahmangungor@deneme.com", ResimYol = "", UyeOlmaTarih = DateTime.Now, WebSite = "http://www.abdurrahmangungor.com", Sifre = "deneme" };
 
                     db.Uyes.Add(uye);
 

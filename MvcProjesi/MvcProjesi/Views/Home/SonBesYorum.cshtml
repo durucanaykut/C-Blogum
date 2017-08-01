@@ -37,7 +37,7 @@
                             <!--Üye bilgilerini alırken Linq yardımıyla, direkt, yorumun ait olduğu
                                       makelenin bilgilerine @@Model[i].Makale. şeklinde ulaşabildik.
                             -->
-                           <a style="color:wheat;">Başlık : </a><a style="color:black;">@Model[i].Makale.Baslik</a>
+                           <a style="color:wheat;">Başlık : </a><a style="color:black;">@Html.ActionLink(@Model[i].Makale.Baslik, "YorumMakalesi", new { yorumId = Model[i].YorumId })</a>
                             <h3 style="color:aquamarine;">Yorumun İçeriği</h3>
                             <p style="color:black;">@Model[i].Icerik</p>
                            <a style="color:wheat; font-weight:bold;">Tarih : @Model[i].Tarih</a>
