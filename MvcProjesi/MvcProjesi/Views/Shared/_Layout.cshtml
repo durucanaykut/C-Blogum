@@ -40,7 +40,12 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    <!--Ajax işlemleri için gereken dosyamızı burada tüm sayfalarda kullanılacak şekilde tanıttık.
+       Ayrıca dosyanın orijinal yolunu değil, bizim belirlediğimiz ~/bundles/jquery-unobtrusive
+       yolunun kullanıldığına dikkat edin.-->
+    @Scripts.Render("~/bundles/jquery-unobtrusive")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>

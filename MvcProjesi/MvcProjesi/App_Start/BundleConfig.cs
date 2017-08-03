@@ -26,6 +26,9 @@ namespace MvcProjesi
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            //Mvc Ajax işlemleri için aşağıdaki dosyamızı ekledik.
+            bundles.Add(new ScriptBundle("~/bundles/jquery-unobtrusive").Include(
+                      "~/Scripts/jquery.unobtrusive-ajax.js"));
         }
     }
 }

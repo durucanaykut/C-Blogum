@@ -60,7 +60,6 @@ namespace MvcProjesi.Controllers
             uye.Soyad = model.Soyad;
             uye.UyeOlmaTarih = DateTime.Now;
             uye.WebSite = model.WebSite;
-            uye.Sifre = model.Sifre;
             using (MvcProjesiContext db = new MvcProjesiContext())
             {
                 db.Uyes.Add(uye);
@@ -74,6 +73,45 @@ namespace MvcProjesi.Controllers
         public ActionResult UyelikBasarili()
         {
             return View();
+        }
+        public ActionResult UyeGiris()
+        {
+            return View();
+        }
+        [HttpPost]
+        public string UyeGirisi()
+        {
+            //Request.Form["html elementinin name özelliği"] ile Post edilen formdaki elemanların
+            //değerlerini alabiliyoruz. Bu metod yalnızca Post ile çalışır.
+            string posta = Request.Form["txtPosta"];
+            if (String.IsNullOrEmpty(posta))
+            {
+                return "E-Posta adresinizi ve şifrenizi girmediniz.";
+            }
+            else if (String.IsNullOrEmpty(posta))
+            {
+                return "E-posta adresinizi girmediniz.";
+            }
+            else
+            {
+                using (MvcProjesiContext db = new MvcProjesiContext())
+                {
+                    //Normalde şifreyi hashleyerek yazdırmamız ve kontrol etmemiz gerekir.
+                    var uye = (from i in db.Uyes where i.EPosta == posta select i).SingleOrDefault();
+
+                    if (uye == null) return "Kullanıcı adınızı ya da şifreyi hatalı girdiniz.";
+
+                    //Session'da müşteri ile ilgili bilgileri saklamaktayız.
+                    //Güvenlik açısından bilgileri şifreleyerek saklamamız daha doğru bir yöntemdir.
+                    //Asp.Net Membership yapısı, bu güvenliği sunmaktadır.
+                    Session["uyeId"] = uye.UyeId;
+
+                    //Burada eğer, kullanıcı bilgileri, sistemde eşleşirse, geriye girişin başarılı
+                    //olduğuna dair bir mesaj ve 3 saniye sonra, ana sayfaya yönlendirecek bir
+                    //javascript kodu ekliyoruz.
+                    return "Sisteme, başarıyla giriş yaptınız.<script type='text/javascript'>setTimeout(function(){window.location='/'},3000);</script>";
+                }
+            }
         }
     }
 }
