@@ -5,10 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/modernizr")
+        <link href="~/Content/css/Style.css" rel="stylesheet" />
 
 </head>
 <body>
+    <section id="container">
+        <header>
+            <a href="/">
+                <div id="logo"></div>
+            </a>
+            <div id="social-media">
+                <a href="?">
+                    <div class="social rss"></div>
+                </a>
+                <a href="#">
+                    <div class="social share"></div>
+                </a>
+                <a href="//youtube.com/" target="_blank">
+                    <div class="social youtube"></div>
+                </a>
+                <a href="//twitter.com/" target="_blank">
+                    <div class="social twitter"></div>
+                </a>
+                <a href="//facebook.com/" target="_blank">
+                    <div class="social facebook"></div>
+                </a>
+            </div>
+            @using (Html.BeginForm("Ara", "Home", FormMethod.Get))
+            {
+                <div id="search">
+                    <div id="search-area">
+                        <input type="text" class="search-text" name="search" />
+                    </div>
+                    <div id="search-button">
+                        <input type="submit" class="search-button" value="Ara" />
+                    </div>
+                </div>
+            }
+        </header>
+    </section>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -34,18 +71,20 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Bizim Mvc Projemiz</p>
+        
+    </div>
+    <div class="container body-content">
+        <footer style="margin-top:10px;">
+            <p>&copy; @DateTime.Now.Year - by Aykut DURUCAN</p>
         </footer>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    <!--Ajax işlemleri için gereken dosyamızı burada tüm sayfalarda kullanılacak şekilde tanıttık.
-       Ayrıca dosyanın orijinal yolunu değil, bizim belirlediğimiz ~/bundles/jquery-unobtrusive
-       yolunun kullanıldığına dikkat edin.-->
-    @Scripts.Render("~/bundles/jquery-unobtrusive")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        @Scripts.Render("~/bundles/jquery")
+        <!--Ajax işlemleri için gereken dosyamızı burada tüm sayfalarda kullanılacak şekilde tanıttık.
+           Ayrıca dosyanın orijinal yolunu değil, bizim belirlediğimiz ~/bundles/jquery-unobtrusive
+           yolunun kullanıldığına dikkat edin.-->
+        @Scripts.Render("~/bundles/jquery-unobtrusive")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
 
 </body>
 </html>
