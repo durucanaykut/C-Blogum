@@ -35,7 +35,7 @@ namespace MvcProjesi.Controllers
                 //Burada Uye modelimizde olmayan bir elemanla çalıştığımız için, kendimiz elle hata
                 //mesajını, sayfadaki hata listesine (@Html.ValidationSummary()) ekliyoruz.
                 ModelState.AddModelError("textBoxDogum", "Doğum tarihi boş geçilemez");
-
+ 
                 //Hata oluşması halinde sayfayı tekrar yüklüyoruz.
                 //Böylelikle otomatik olarak hatalar sayfada gösteriliyor.
                 return View();
@@ -60,11 +60,12 @@ namespace MvcProjesi.Controllers
             uye.Soyad = model.Soyad;
             uye.UyeOlmaTarih = DateTime.Now;
             uye.WebSite = model.WebSite;
+            uye.Sifre = model.Sifre;
             using (MvcProjesiContext db = new MvcProjesiContext())
             {
                 db.Uyes.Add(uye);
                 db.SaveChanges();
-
+ 
                 //İşlemimiz başarıyla biterse, başarılı olduğuna dair bir sayfaya yönlendiriyoruz.
                 return RedirectToAction("UyelikBasarili");
             }
@@ -84,7 +85,8 @@ namespace MvcProjesi.Controllers
             //Request.Form["html elementinin name özelliği"] ile Post edilen formdaki elemanların
             //değerlerini alabiliyoruz. Bu metod yalnızca Post ile çalışır.
             string posta = Request.Form["txtPosta"];
-            if (String.IsNullOrEmpty(posta))
+            string sifre = Request.Form["pswSifre"];
+            if (String.IsNullOrEmpty(posta) && String.IsNullOrEmpty(sifre))
             {
                 return "E-Posta adresinizi ve şifrenizi girmediniz.";
             }
@@ -92,12 +94,16 @@ namespace MvcProjesi.Controllers
             {
                 return "E-posta adresinizi girmediniz.";
             }
+            else if (string.IsNullOrEmpty(sifre))
+            {
+                return "Şifrenizi girmediniz.";
+            }
             else
             {
                 using (MvcProjesiContext db = new MvcProjesiContext())
                 {
                     //Normalde şifreyi hashleyerek yazdırmamız ve kontrol etmemiz gerekir.
-                    var uye = (from i in db.Uyes where i.EPosta == posta select i).SingleOrDefault();
+                    var uye = (from i in db.Uyes where i.Sifre == sifre && i.EPosta == posta select i).SingleOrDefault();
 
                     if (uye == null) return "Kullanıcı adınızı ya da şifreyi hatalı girdiniz.";
 

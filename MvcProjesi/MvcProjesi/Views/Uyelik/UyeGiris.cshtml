@@ -44,10 +44,12 @@
 {
     <div id="divSol">
         @Html.Label("E-Posta Adresiniz")<br />
+        @Html.Label("Şifreniz")
     </div>
     <div id="divSag">
         : @Html.TextBox("txtPosta")<br />
+        : @Html.Password("pswSifre")
     </div>
-    <input type="submit" value="Üye Ol" id="btnUyeOl" />
+    <input type="submit" value="Giriş Yap" id="btnUyeOl" />
     <div id="divSonuc"></div>
 }
