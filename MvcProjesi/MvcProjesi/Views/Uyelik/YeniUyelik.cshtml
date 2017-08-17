@@ -3,38 +3,13 @@
 @{
     ViewBag.Title = "Yeni Üyelik";
 }
+<html>
+<head>
 <!--Layout sayfamızda sayfanın en alt kısmında scripts adlı bir sectionumuz tanımlanmıştı.
     Script ve css kodlarımızı scripts sectionuna koyacağız.
     Detaylı bilgi önceki yazılarımızda vardır.-->
 @section scripts{
-    <style type="text/css">
-        #formKapsayici {
-            box-shadow: 0 0 5px gray;
-            padding: 25px;
-            height: 500px;
-        }
-
-        #divSol, #divSag {
-            float: left;
-            margin-left: 25px;
-        }
-
-            #divSol *, #divSag * {
-                margin-top: 15px;
-            }
-
-        input[type="text"] {
-            width: 250px;
-        }
-
-        #btnUyeOl {
-            /*clear komutu ile önceki divlerin sola yaslanarak sıralanmasında, butonun bu yaslanmaya
-            uymayıp alt satıra inmesini sağlıyoruz*/
-            clear: both;
-            display: block;
-            margin-left: 132px;
-        }
-    </style>
+   
 
     <!--Projemizde tarih seçici kullanacağız. Bunun için Jquery ve Jqueryui den faydalanacağız.-->
     <!--Öncelikle gerekli Jquery ui kütüphanemizi ekliyoruz. Jquery kütüphanemiz Layout sayfamızda
@@ -50,44 +25,77 @@
         });
     </script>
 }
-<h2>Yeni Üyelik</h2>
-
-<!--Html.BeginForm ile yeni bir form oluşturuyoruz ve içeriğine elemanlarımızı ekliyoruz.-->
-<!--Formumuzun içinde resim yüklemesi de yapacağımız için, forma enctype = "multipart/form-data" özelliği veriyoruz-->
-<!--Ayrıca normalde sistemimize doğum gününü kaydetmeyecektik, bu yüzden bir örnek olması adına Jquery ile
-    doğum tarihini alarak, yaş kontrolü yapacağız.-->
-<!--Formun sunucuya gönderim yöntemini, FormMethod.Post yaptığımıza dikkat edin.
-Get ve Post metodları hakkında internette araştırma yapmanızda fayda var.-->
-
-@using (Html.BeginForm("YeniUyelik", "Uyelik", FormMethod.Post, new { enctype = "multipart/form-data", id = "formKapsayici" }))
-{
-    <div id="divSol">
-        @Html.LabelFor(i => Model.Ad)<br /><br />
-        @Html.LabelFor(i => Model.Soyad)<br /><br />
-        @Html.LabelFor(i => Model.EPosta)<br /><br />
-        @Html.LabelFor(i => Model.Sifre)<br /><br />
-        @Html.LabelFor(i => Model.WebSite)<br /><br />
-
-        <!--Tüm elemanlarda for takısını kullanırken doğum tarihi ve resim yüklemede kullanmadık.
-            Çünkü bu iki elaman daha önce hazırladığımız Uye modeline ait değiller.
-            Bu yüzden elle ekledik.-->
-        @Html.Label("Doğum Tarihiniz")<br /><br />
-        @Html.Label("Profil Resminiz")<br /><br />
+    <link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+    <link href="~/Content/css/Style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="page-header" style="height:80px;">
+        <h3>
+            Yeni Üyelik
+        </h3>
     </div>
-    <div id="divSag">
-        : @Html.TextBoxFor(i => Model.Ad)<br /><br />
-        : @Html.TextBoxFor(i => Model.Soyad)<br /><br />
-        : @Html.TextBoxFor(i => Model.EPosta)<br /><br />
-        : @Html.TextBoxFor(i => Model.Sifre)<br /><br />
-        : @Html.TextBoxFor(i => Model.WebSite)<br /><br />
-        : @Html.TextBox("textBoxDogum")<br /><br />
 
-        <!--Aşağıdaki input type="file" dosya yüklemeye yarayan, html elementidir.-->
-        <input type="file" id="inputFile" name="file" /> <br /><br />
+    <!--Html.BeginForm ile yeni bir form oluşturuyoruz ve içeriğine elemanlarımızı ekliyoruz.-->
+    <!--Formumuzun içinde resim yüklemesi de yapacağımız için, forma enctype = "multipart/form-data" özelliği veriyoruz-->
+    <!--Ayrıca normalde sistemimize doğum gününü kaydetmeyecektik, bu yüzden bir örnek olması adına Jquery ile
+        doğum tarihini alarak, yaş kontrolü yapacağız.-->
+    <!--Formun sunucuya gönderim yöntemini, FormMethod.Post yaptığımıza dikkat edin.
+    Get ve Post metodları hakkında internette araştırma yapmanızda fayda var.-->
 
-    </div>
-    <input type="submit" value="Üye Ol" id="btnUyeOl" />
+    @using (Html.BeginForm("YeniUyelik", "Uyelik", FormMethod.Post, new { enctype = "multipart/form-data", id = "formKapsayici" }))
+            {
+        <div id="page-header" style="height:400px;">
+            @Html.LabelFor(i => Model.Ad)<br /><br />
+                <div id="search-area" style="position:absolute; top:315px; left:270px;">
+                    @Html.TextBoxFor(i => Model.Ad," ",new { @class = "search-text", @style = "color:black" })
+                </div>
+
+                @Html.LabelFor(i => Model.Soyad)<br /><br />
+                <div id="search-area" style="position:absolute; top:360px; left:270px;">
+                    @Html.TextBoxFor(i => Model.Soyad, " ", new { @class = "search-text", @style = "color:black" })
+                </div>
+
+                @Html.LabelFor(i => Model.EPosta)<br /><br />
+                <div id="search-area" style="position:absolute; top:405px; left:270px;">
+                    @Html.TextBoxFor(i => Model.EPosta, " ", new { @class = "search-text", @style = "color:black" })
+                </div>
+
+                @Html.LabelFor(i => Model.Sifre)<br /><br />
+                <div id="search-area" style="position:absolute; top:450px; left:270px;">
+                    @Html.TextBoxFor(i => Model.Sifre, " ", new { @class = "search-text", @style = "color:black" })
+                </div>
+
+                @Html.LabelFor(i => Model.WebSite)<br /><br />
+                <div id="search-area" style="position:absolute; top:497px; left:270px;">
+                    @Html.TextBoxFor(i => Model.WebSite, " ", new { @class = "search-text", @style = "color:black" })
+                </div>
+
+                <!--Tüm elemanlarda for takısını kullanırken doğum tarihi ve resim yüklemede kullanmadık.
+        Çünkü bu iki elaman daha önce hazırladığımız Uye modeline ait değiller.
+        Bu yüzden elle ekledik.-->
+                @Html.Label("Doğum Tarihiniz")<br /><br />
+                <div id="search-area" style="position:absolute; top:542px; left:270px;">
+                    @Html.TextBox("textBoxDogum", " ", new { @class = "search-text", @style = "color:black" })<br /><br />
+                </div>
+
+                @Html.Label("Profil Resminiz")<br /><br />
+                <div style="position:absolute; top:590px; left:270px; width:67px;">
+                    <input type="file" name="file"  />
+                </div>
+
+                <div id="search-button" style="position:absolute; top:620px; left:405px; width:67px;">
+                    <input type="submit" value="Üye Ol"  class="search-button" />
+                </div>
+            </div>
+              
+                
 
     <!--Html.ValidationSummary ile formda oluşan geçerlilik hatalarını liste halinde gösterebiliyoruz.-->
-    @Html.ValidationSummary()
-}
+                @Html.ValidationSummary()
+    }
+</body>
+
+</html>

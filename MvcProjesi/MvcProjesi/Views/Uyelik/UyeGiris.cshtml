@@ -6,50 +6,37 @@
     Script ve css kodlarımızı scripts sectionuna koyacağız.
     Detaylı bilgi önceki yazılarımızda vardır.-->
 @section scripts{
-    <style type="text/css">
-        #formKapsayici {
-            box-shadow: 0 0 5px gray;
-            padding: 25px;
-            height: 500px;
-        }
-
-        #divSol, #divSag {
-            float: left;
-            margin-left: 25px;
-        }
-
-            #divSol *, #divSag * {
-                margin-top: 15px;
+    <html>
+    <head>
+        <link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+        <link href="~/Content/css/Style.css" rel="stylesheet" />
+    </head>
+    <body>
+    } <div class="page-header" style="height:80px;">
+        <h3>
+                Üye Girişi
+        </h3>
+    </div>
+    @using (Ajax.BeginForm("UyeGirisi", "Uyelik", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "divSonuc" }, new { id = "formKapsayici" }))
+            {
+                <div id="page-header" style="height:275px;">
+                    @Html.Label("E-Posta Adresiniz")<br/><br/>
+                    <div id="search-area" style="position:absolute; top:320px; left:270px;">
+                        @Html.TextBox("txtPosta"," ", new {@class = "search-text", @style = "color:black" }) <br />
+                    </div>
+                    @Html.Label("Şifreniz")
+                    <div id="search-area" style="position:absolute; top:363px; left:270px;">
+                        
+                         @Html.Password("pswSifre","", new {@class = "search-text", @style="color:black"})
+                    </div>
+                    <div id="search-button" style="position:absolute; top:400px; left:405px; width:67px;">
+                        <input type="submit" class="search-button" value="Giriş Yap" />
+                        </div>
+                        <div id="divSonuc"></div>
+                    </div>
             }
-
-        input[type="text"] {
-            width: 250px;
-        }
-
-        #btnUyeOl {
-            /*clear komutu ile önceki divlerin sola yaslanarak sıralanmasında, butonun bu yaslanmaya
-            uymayıp alt satıra inmesini sağlıyoruz*/
-            clear: both;
-            display: block;
-            margin-left: 132px;
-        }
-
-        #divSonuc {
-            color: red;
-        }
-    </style>
-}
-<h2>Üye Girişi</h2>
-@using (Ajax.BeginForm("UyeGirisi", "Uyelik", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "divSonuc" }, new { id = "formKapsayici" }))
-{
-    <div id="divSol">
-        @Html.Label("E-Posta Adresiniz")<br />
-        @Html.Label("Şifreniz")
-    </div>
-    <div id="divSag">
-        : @Html.TextBox("txtPosta")<br />
-        : @Html.Password("pswSifre")
-    </div>
-    <input type="submit" value="Giriş Yap" id="btnUyeOl" />
-    <div id="divSonuc"></div>
-}
+</body>
+</html>
