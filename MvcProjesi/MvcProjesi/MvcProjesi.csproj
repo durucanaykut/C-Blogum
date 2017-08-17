@@ -289,6 +289,8 @@
     <Content Include="Views\Uyelik\YeniUyelik.cshtml" />
     <Content Include="Views\Uyelik\UyelikBasarili.cshtml" />
     <Content Include="Views\Uyelik\UyeGiris.cshtml" />
+    <Content Include="Views\Home\MakaleEkle.cshtml" />
+    <Content Include="Views\Home\ara.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

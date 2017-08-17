@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "~/Views/shared/_Layout.cshtml";
+    ViewBag.Title = "Kisisel Blog | Arama Sonuçları";
+    ViewBag.Description = "Kisisel Blog arama sonuçları sayfası";
+    ViewBag.Keywords = "Kisisel, blog, arama, sonuçları, sayfası";
+}
+<html>
+<head>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+    <link href="~/Content/css/Style.css" rel="stylesheet" />
+    <style>
+        #search-result {
+            padding: 20px;
+            color: black !important;
+            text-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header" style="height:80px;">
+            <h2>Arama Sonuçları</h2>
+        </div>
+            <div id="search-result" style="background-color: #006666; padding: 20px 20px 20px 40px; margin: 0px;color: antiquewhite;">
+
+            @section scripts{
+                <script src="http://www.google.com/jsapi"></script>
+                <script type="text/javascript">
+                    google.load('search', '1');
+                    function OnLoad() {
+                        var s = window.location.search;
+                        if (s.indexOf('search=') >= 0) {
+                            s = s.substring(s.indexOf('search=') + 7);
+                            if (s.indexOf('&') >= 0) {
+                                s = s.substring(0, s.indexOf('&'));
+                            }
+                            s = decodeURIComponent(s.replace('+', ' '));
+                        }
+                        else {
+                            s = "";
+                        }
+                        var customSearchControl = new google.search.CustomSearchControl('001660367473914740636:7kr_dfq5oi0');
+                        customSearchControl.draw('search-result');
+                        customSearchControl.execute(s);
+
+                    }
+                    google.setOnLoadCallback(OnLoad);
+                </script>
+            }
+                </div>
+</body>
+</html>

@@ -61,6 +61,7 @@ namespace MvcProjesi.Controllers
             uye.UyeOlmaTarih = DateTime.Now;
             uye.WebSite = model.WebSite;
             uye.Sifre = model.Sifre;
+   
             using (MvcProjesiContext db = new MvcProjesiContext())
             {
                 db.Uyes.Add(uye);
@@ -104,13 +105,14 @@ namespace MvcProjesi.Controllers
                 {
                     //Normalde şifreyi hashleyerek yazdırmamız ve kontrol etmemiz gerekir.
                     var uye = (from i in db.Uyes where i.Sifre == sifre && i.EPosta == posta select i).SingleOrDefault();
-
+                    var sorgu = uye.UyeId;
                     if (uye == null) return "Kullanıcı adınızı ya da şifreyi hatalı girdiniz.";
-
+                    
                     //Session'da müşteri ile ilgili bilgileri saklamaktayız.
                     //Güvenlik açısından bilgileri şifreleyerek saklamamız daha doğru bir yöntemdir.
                     //Asp.Net Membership yapısı, bu güvenliği sunmaktadır.
                     Session["uyeId"] = uye.UyeId;
+                    
 
                     //Burada eğer, kullanıcı bilgileri, sistemde eşleşirse, geriye girişin başarılı
                     //olduğuna dair bir mesaj ve 3 saniye sonra, ana sayfaya yönlendirecek bir

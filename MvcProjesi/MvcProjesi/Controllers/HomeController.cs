@@ -97,5 +97,38 @@ namespace MvcProjesi.Controllers
             Makale makale = (from i in db.Yorums where i.YorumId == yorumId select i.Makale).SingleOrDefault();
             return View(makale);
         }
+
+        public ActionResult MakaleEkle()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult MakaleEkle(Makale model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            Makale makale = new Makale();
+            makale.Baslik = model.Baslik;
+            makale.Icerik = model.Icerik;
+            makale.Tarih = DateTime.Now;
+            string kul = Session["uyeId"].ToString();
+            
+
+            using (MvcProjesiContext db = new MvcProjesiContext())
+            {
+                db.Makales.Add(makale);
+                db.SaveChanges();
+             
+                //İşlemimiz başarıyla biterse, başarılı olduğuna dair bir sayfaya yönlendiriyoruz.
+                return RedirectToAction("Index");
+            }
+        }
+        public ActionResult ara()
+        {
+            return View();
+        }
     }
 }

@@ -1,0 +1,44 @@
+﻿@model MvcProjesi.Data.Makale
+@{
+    ViewBag.Title = "MakaleEkle";
+}
+<html>
+<head>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+    <link href="~/Content/css/Style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="page-header" style="height:80px;">
+        <h3>MakaleEkle</h3>
+    </div>
+     
+    @using (Html.BeginForm("MakaleEkle", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "formKapsayici" }))
+            {
+            <div id="page-header" style="height:275px;">
+                @Html.LabelFor(i => Model.Baslik)<br /><br />
+                <div id="search-area" style="position:absolute; top:315px; left:270px;">
+                    @Html.TextBoxFor(i => Model.Baslik, " ", new { @class = "search-text", @style = "color:black" })
+                </div>
+
+                @Html.LabelFor(i => Model.Icerik)<br /><br />
+                <div id="search-area" style="position:absolute; top:360px; left:270px;">
+                    @Html.TextBoxFor(i => Model.Icerik, " ", new { @class = "search-text", @style = "color:black" })
+                </div>
+
+                <div id="search-button" style="position:absolute; top:405px; left:405px; width:67px;">
+                    <input type="submit" value="Üye Ol" class="search-button" />
+                </div>
+            </div>
+        
+
+
+    <!--Html.ValidationSummary ile formda oluşan geçerlilik hatalarını liste halinde gösterebiliyoruz.-->
+            @Html.ValidationSummary()
+    }
+</body>
+</html>
